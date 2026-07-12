@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #0a0a0b; /* deep near-black, not pure black */
+  --color-bg-raised: #131317; /* card surface */
+  --color-bg-raised-2: #1b1b21; /* hover / nested surface */
+  --color-border: #26262e;
+  --color-text: #eeeef1;
+  --color-text-muted: #a0a0ab;
+  --color-text-faint: #6b6b76;
+
+  --color-accent: #9184d9; /* electric violet — premium-tech accent */
+  --color-accent-light: #b3a8ec;
+  --color-accent-dark: #6d5fc4;
+  --color-accent-glow: rgba(145, 132, 217, 0.45);
+
+  --color-section: #211c3d; /* saturated deep-indigo ground for the CTA band only */
+  --color-section-glow: rgba(145, 132, 217, 0.35);
+
+  /* next/font supplies --font-space-grotesk and --font-inter (see layout.tsx).
+     General Sans is not on Google Fonts, so Space Grotesk is the loaded heading face. */
+  --font-heading: var(--font-space-grotesk), "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.5);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* offset for the sticky nav when jumping to anchors */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-[13px] font-medium uppercase tracking-[0.06em] text-text-muted;
+  }
+
+  /* Primary CTA — violet line + glow, never a solid fill */
+  .btn-primary {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md bg-transparent px-6 py-3.5 text-[15px] font-medium text-accent-light transition-all duration-200 sm:py-3;
+    box-shadow: 0 0 0 1px var(--color-accent), 0 0 32px var(--color-accent-glow);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px var(--color-accent-light), 0 0 44px var(--color-accent-glow);
+  }
+
+  /* Secondary / ghost */
+  .btn-ghost {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md border border-border bg-transparent px-6 py-3.5 text-[15px] font-medium text-text transition-all duration-200 sm:py-3;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-text-faint);
+    background-color: var(--color-bg-raised);
+  }
+
+  .card {
+    @apply rounded-lg border border-border bg-bg-raised p-6 sm:p-8;
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Clickable card hover — violet-tinted border + soft glow + lift */
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    border-color: rgba(145, 132, 217, 0.4);
+    box-shadow: var(--shadow-md), 0 0 28px var(--color-accent-glow);
+  }
+}
+
+/* Scroll-reveal — controlled by the Reveal component / useReveal hook */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
