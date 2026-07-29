@@ -6,11 +6,11 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Wun — The Lead Machine",
   description:
-    "Website, ads and an AI that answers every enquiry in under a minute — built as one machine and live in 7 days.",
+    "A site that turns clicks into enquiries, ads that fill it, and an AI that answers every lead in under a minute. One machine, run for you, live in 7 days.",
   openGraph: {
-    title: "Wun — The Lead Machine",
+    title: "Wun — More customers, less of your week.",
     description:
-      "Website, ads and an AI that answers every enquiry in under a minute — built as one machine and live in 7 days.",
+      "A site that turns clicks into enquiries, ads that fill it, and an AI that answers every lead in under a minute. One machine, run for you, live in 7 days.",
     siteName: "Wun",
     type: "website",
   },

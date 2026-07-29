@@ -104,6 +104,10 @@ export default function HowItWorksPage() {
           <div className="section-head">
             <span className="eyebrow">( The system )</span>
             <h2 className="h2">One machine. Three parts.</h2>
+            <p className="lead">
+              Not three services on a menu. Each part feeds the next and all of
+              it is run for you.
+            </p>
           </div>
 
           <div className="rows">
@@ -189,6 +193,10 @@ export default function HowItWorksPage() {
           <div className="section-head">
             <span className="eyebrow">( The method )</span>
             <h2 className="h2">Live in 7 days. Answering on day 7.</h2>
+            <p className="lead">
+              One kickoff call is all we need from you. Everything after that is
+              ours to build, run and tune.
+            </p>
           </div>
 
           <div className="methodgrid">
