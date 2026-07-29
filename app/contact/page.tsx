@@ -1,66 +1,77 @@
 import type { Metadata } from "next";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import { whatsappHref } from "@/lib/constants";
+import LiveClock from "@/components/LiveClock";
+import { WhatsAppIcon, PinIcon, ClockIcon } from "@/components/icons";
+import { whatsappHref, whatsappDisplay } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Contact — Wun",
   description:
-    "Tell us what's not working. We'll reply within one business day — or chat now on WhatsApp.",
+    "Your next customer is already looking. Start your Lead Machine — message us on WhatsApp or send an enquiry.",
 };
+
+const WA_MESSAGE =
+  "Hi Wun — I'd like to talk about building a Lead Machine for my business.";
 
 export default function ContactPage() {
   return (
-    <>
-      <Nav />
-      <main className="container-x py-16 md:py-24">
-        <div className="max-w-2xl">
-          <span className="eyebrow">Contact</span>
-          <h1 className="mt-3 text-[clamp(2.25rem,6vw,3.5rem)]">
-            Let&apos;s talk leads.
-          </h1>
-          <p className="mt-4 text-lg text-text-muted">
-            Tell us what&apos;s not working right now. We&apos;ll come back with
-            a plan — fast.
-          </p>
-        </div>
+    <main>
+      <section className="section section--contact" style={{ paddingTop: "clamp(64px,10vw,128px)" }}>
+        <div className="wrap contact">
+          {/* Left */}
+          <div className="contact__left">
+            <span className="eyebrow">
+              <span className="live-dot" aria-hidden="true" />
+              Start here
+            </span>
+            <h1 className="h1">Your next customer is already looking.</h1>
+            <p className="lead">
+              The only question is whether they find you or someone who answered
+              faster. Tell us about your business and we&apos;ll show you the
+              machine that catches them first.
+            </p>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-[1.4fr_1fr] md:gap-8">
-          {/* Left — form */}
-          <ContactForm />
-
-          {/* Right — alternate contact */}
-          <div className="flex flex-col gap-6">
-            <div className="card">
-              <h2 className="text-lg font-semibold text-text">
-                Prefer WhatsApp?
-              </h2>
-              <p className="mt-2 text-[15px] text-text-muted">
-                Skip the form and message us directly. It&apos;s usually the
-                fastest way to reach us.
-              </p>
+            <div className="contact__actions">
               <a
-                href={whatsappHref()}
+                className="btn btn--whatsapp"
+                href={whatsappHref(WA_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-ghost mt-5 w-full"
               >
+                <WhatsAppIcon />
                 Chat on WhatsApp
               </a>
             </div>
 
-            <div className="card">
-              <h2 className="text-lg font-semibold text-text">Response time</h2>
-              <p className="mt-2 text-[15px] text-text-muted">
-                We reply to every enquiry within one business day — often much
-                sooner.
-              </p>
-            </div>
+            <ul className="details">
+              <li>
+                <WhatsAppIcon size={18} />
+                <span>
+                  <span className="details__label">WhatsApp</span>
+                  {whatsappDisplay}
+                </span>
+              </li>
+              <li>
+                <PinIcon />
+                <span>
+                  <span className="details__label">Where / when</span>
+                  South Africa · <LiveClock />
+                </span>
+              </li>
+              <li>
+                <ClockIcon />
+                <span>
+                  <span className="details__label">Response</span>
+                  Replies within one business day
+                </span>
+              </li>
+            </ul>
           </div>
+
+          {/* Right — form */}
+          <ContactForm />
         </div>
-      </main>
-      <Footer />
-    </>
+      </section>
+    </main>
   );
 }
