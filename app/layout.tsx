@@ -1,23 +1,22 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Wun — The Lead Machine",
+  title: "Wun Digital — The Full Diary System",
   description:
-    "A site that turns clicks into enquiries, ads that fill it, and an AI that answers every lead in under a minute. One machine, run for you, live in 7 days.",
+    "A done-for-you system that brings UK trades a steady stream of interested local clients and books the work for you — site, ads and automated follow-up. Book a free 15-minute call.",
   openGraph: {
-    title: "Wun — More customers, less of your week.",
+    title: "Wun Digital — The Full Diary System",
     description:
-      "A site that turns clicks into enquiries, ads that fill it, and an AI that answers every lead in under a minute. One machine, run for you, live in 7 days.",
-    siteName: "Wun",
+      "A done-for-you system that brings UK trades a steady stream of interested local clients and books the work for you — site, ads and automated follow-up. Book a free 15-minute call.",
+    siteName: "Wun Digital",
     type: "website",
+    // TODO: add OG image at /public/og.jpg and reference it here.
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0F0E",
+  themeColor: "#f3f2f2",
   width: "device-width",
   initialScale: 1,
 };
@@ -28,10 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en-GB">
       <head>
-        {/* Fonts via Google Fonts stylesheet (browser-loaded, no build-time fetch).
-            Sora 400/600/700/800 · Inter 400/500/600 · JetBrains Mono 400/500/700 */}
+        {/*
+          Archivo (400, 800) — the only typeface.
+          Loaded as a browser stylesheet rather than next/font/google because
+          build-time font fetching is unavailable in this environment. Swap to
+          `next/font/google` if your build has network access at build time.
+        */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -40,14 +43,10 @@ export default function RootLayout({
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;800&display=swap"
         />
       </head>
-      <body>
-        <Nav />
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
